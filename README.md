@@ -28,5 +28,8 @@ $ pip freeze > requirements.txt
 ```
 
 ## Acknowledgements
-Opinosis dataset repo: https://github.com/kavgan/opinosis-summarization/blob/master/README.md
-Reference code: https://github.com/wangyuhsin/tfidf-text-summarization/blob/main/README.md
+Opinosis dataset repo: 
+https://github.com/kavgan/opinosis-summarization/blob/master/README.md
+
+Reference code: 
+https://github.com/wangyuhsin/tfidf-text-summarization/blob/main/README.md
