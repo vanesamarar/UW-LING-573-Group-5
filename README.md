@@ -26,3 +26,7 @@ $ pip install -r requirements.txt
 $ pip install <package-name>
 $ pip freeze > requirements.txt
 ```
+
+## Acknowledgements
+Opinosis dataset repo: https://github.com/kavgan/opinosis-summarization/blob/master/README.md
+Reference code: https://github.com/wangyuhsin/tfidf-text-summarization/blob/main/README.md
