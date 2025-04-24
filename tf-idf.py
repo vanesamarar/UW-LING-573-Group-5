@@ -1,4 +1,4 @@
-# Authors: Nina Koh, 
+# Authors: Nina Koh, Chelsea Kendrick
 # Summarizes review data via Term Frequency-Inverse Document Frequency (TF-IDF)
 
 import os, glob, re, nltk
@@ -14,9 +14,9 @@ def load_data(data_dir):
     files = glob.glob(search_path) # files that match search pattern
     for file in files:
         filename = os.path.basename(file) # e.g. price_amazon_kindle.txt.data
-        base = os.path.splittext(filename)[0] # e.g. price_amazon_kindle.txt
-        topic = os.path.splittext(base)[0] # e.g. price_amazon_kindle
-        with open(file, 'r') as f:
+        base = os.path.splitext(filename)[0] # e.g. price_amazon_kindle.txt
+        topic = os.path.splitext(base)[0] # e.g. price_amazon_kindle
+        with open(file, 'r', encoding='utf-8', errors='ignore') as f: #ignore non-unicode characters
             lines = []
             for line in f:
                 if line.strip(): # avoid empty strings
@@ -45,8 +45,29 @@ def stem_words(tokens):
     return stems
 
 def summarize_topic(n):
-    """Summarizes the top n sentences"""
+    """Summarizes the top n sentences for each topic using TF-IDF scoring"""
+    data = load_data("data/")
+    for topic, sentences in data.items():
+        print(f"\n--- Summary for topic: {topic} ---")
+        
+        # Preprocess each sentence
+        cleaned_sentences = [clean_line(s) for s in sentences]
+        tokenized_sentences = [' '.join(stem_words(tokenize_line(s))) for s in cleaned_sentences]
+
+        # Use TF-IDF to vectorize and score sentences
+        vectorizer = TfidfVectorizer()
+        tfidf_matrix = vectorizer.fit_transform(tokenized_sentences)
+
+        # Compute the sum of TF-IDF scores for each sentence
+        sentence_scores = tfidf_matrix.sum(axis=1).flatten().tolist()[0]
+        scored_sentences = list(zip(sentence_scores, sentences))
+
+        # Get top n sentences by score
+        top_sentences = sorted(scored_sentences, key=lambda x: x[0], reverse=True)[:n]
+
+        for score, sentence in top_sentences:
+            print(f"- {sentence}")
 
 if __name__ == "__main__":
-    data = load_data("data/") # loads data directly from data folder
-    # tokens = tokenize_line(line)
+    nltk.download('punkt')
+    summarize_topic(3) #choose top 3 sentences (can be changed)
