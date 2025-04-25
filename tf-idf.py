@@ -1,7 +1,7 @@
-# Authors: Nina Koh, Chelsea Kendrick
+# Authors: Nina Koh, Chelsea Kendrick, Vanesa Marar
 # Summarizes review data via Term Frequency-Inverse Document Frequency (TF-IDF)
 
-import os, glob, re, nltk
+import os, glob, re, nltk, json
 from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, TfidfVectorizer
 
@@ -47,6 +47,8 @@ def stem_words(tokens):
 def summarize_topic(n):
     """Summarizes the top n sentences for each topic using TF-IDF scoring"""
     data = load_data("data/")
+    summaries = []
+
     for topic, sentences in data.items():
         print(f"\n--- Summary for topic: {topic} ---")
         
@@ -65,8 +67,19 @@ def summarize_topic(n):
         # Get top n sentences by score
         top_sentences = sorted(scored_sentences, key=lambda x: x[0], reverse=True)[:n]
 
-        for score, sentence in top_sentences:
+        summary_sentences = [sentence for score, sentence in top_sentences]
+
+        for sentence in summary_sentences:
             print(f"- {sentence}")
+
+        summaries.append({
+            "topic": topic,
+            "original_reviews": sentences,
+            "summary": summary_sentences
+        })
+
+    with open("summaries.json", "w", encoding="utf-8") as f:
+        json.dump(summaries, f, indent=2, ensure_ascii=False)
 
 if __name__ == "__main__":
     nltk.download('punkt')
