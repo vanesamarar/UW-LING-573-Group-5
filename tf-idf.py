@@ -47,7 +47,7 @@ def stem_words(tokens):
 def summarize_topic(n):
     """Summarizes the top n sentences for each topic using TF-IDF scoring"""
     data = load_data("data/")
-    summaries = []
+    summaries = {}
 
     for topic, sentences in data.items():
         print(f"\n--- Summary for topic: {topic} ---")
@@ -72,15 +72,11 @@ def summarize_topic(n):
         for sentence in summary_sentences:
             print(f"- {sentence}")
 
-        summaries.append({
-            "topic": topic,
-            "original_reviews": sentences,
-            "summary": summary_sentences
-        })
+        summaries[topic] = summary_sentences  # Use dictionary format
 
     with open("summaries.json", "w", encoding="utf-8") as f:
         json.dump(summaries, f, indent=2, ensure_ascii=False)
 
 if __name__ == "__main__":
     nltk.download('punkt')
-    summarize_topic(3) #choose top 3 sentences (can be changed)
+    summarize_topic(1) #choose top 3 sentences (can be changed)
