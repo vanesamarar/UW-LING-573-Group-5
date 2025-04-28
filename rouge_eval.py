@@ -2,7 +2,6 @@ import os
 import json
 from rouge_score import rouge_scorer
 
-# Function to load gold summaries
 def load_gold_summaries(gold_dir):
     """Loads the gold summaries from the 'summaries-gold' directory."""
     gold_summaries = {}
@@ -16,13 +15,11 @@ def load_gold_summaries(gold_dir):
                         gold_summaries[topic_dir].append(f.read().strip())
     return gold_summaries
 
-# Function to load TF-IDF summaries (assumed structure of the summaries)
 def load_generated_summaries(summary_file):
     """Loads the generated summaries from the TF-IDF summary JSON file."""
     with open(summary_file, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-# Function to evaluate summaries using ROUGE scores
 def evaluate_summary(gold_summaries, generated_summaries):
     """Evaluate the TF-IDF summaries using ROUGE scores."""
     scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
@@ -30,45 +27,92 @@ def evaluate_summary(gold_summaries, generated_summaries):
 
     for topic, generated_summary in generated_summaries.items():
         gold_summary = gold_summaries.get(topic, [])
-        
-        # If no gold summary for this topic, skip
+
         if not gold_summary:
             continue
 
-        # Compare the generated summary with each gold summary
-        scores = []
+        recall_scores = []
+        precision_scores = []
+        f1_scores = []
+
         for g_summary in gold_summary:
             score = scorer.score(g_summary, ' '.join(generated_summary))
-            scores.append(score)
 
-        # Aggregate scores (e.g., average F-measure)
-        avg_scores = {
-            'rouge1': sum([s['rouge1'].fmeasure for s in scores]) / len(scores),
-            'rouge2': sum([s['rouge2'].fmeasure for s in scores]) / len(scores),
-            'rougeL': sum([s['rougeL'].fmeasure for s in scores]) / len(scores),
+            # Extract the Recall, Precision, and F1 for each ROUGE metric
+            recall_scores.append({
+                'rouge1': score['rouge1'].recall,
+                'rouge2': score['rouge2'].recall,
+                'rougeL': score['rougeL'].recall,
+            })
+            precision_scores.append({
+                'rouge1': score['rouge1'].precision,
+                'rouge2': score['rouge2'].precision,
+                'rougeL': score['rougeL'].precision,
+            })
+            f1_scores.append({
+                'rouge1': score['rouge1'].fmeasure,
+                'rouge2': score['rouge2'].fmeasure,
+                'rougeL': score['rougeL'].fmeasure,
+            })
+
+        # Aggregate the scores by calculating the average Recall, Precision, and F1
+        avg_recall = {
+            'rouge1': sum([s['rouge1'] for s in recall_scores]) / len(recall_scores),
+            'rouge2': sum([s['rouge2'] for s in recall_scores]) / len(recall_scores),
+            'rougeL': sum([s['rougeL'] for s in recall_scores]) / len(recall_scores),
         }
-        results[topic] = avg_scores
+
+        avg_precision = {
+            'rouge1': sum([s['rouge1'] for s in precision_scores]) / len(precision_scores),
+            'rouge2': sum([s['rouge2'] for s in precision_scores]) / len(precision_scores),
+            'rougeL': sum([s['rougeL'] for s in precision_scores]) / len(precision_scores),
+        }
+
+        avg_f1 = {
+            'rouge1': sum([s['rouge1'] for s in f1_scores]) / len(f1_scores),
+            'rouge2': sum([s['rouge2'] for s in f1_scores]) / len(f1_scores),
+            'rougeL': sum([s['rougeL'] for s in f1_scores]) / len(f1_scores),
+        }
+
+        # Store the average recall, precision, and f1 scores for each topic
+        results[topic] = {
+            'recall': avg_recall,
+            'precision': avg_precision,
+            'f1': avg_f1
+        }
 
     return results
 
-# Function to print and summarize the evaluation results
 def print_rouge_results(results):
-    """Prints out the average ROUGE results."""
-    avg_rouge1 = sum([result['rouge1'] for result in results.values()]) / len(results)
-    avg_rouge2 = sum([result['rouge2'] for result in results.values()]) / len(results)
-    avg_rougeL = sum([result['rougeL'] for result in results.values()]) / len(results)
+    """Prints the average ROUGE scores for each metric."""
+    avg_rouge1 = sum([result['recall']['rouge1'] for result in results.values()]) / len(results)
+    avg_rouge2 = sum([result['recall']['rouge2'] for result in results.values()]) / len(results)
+    avg_rougeL = sum([result['recall']['rougeL'] for result in results.values()]) / len(results)
 
-    print(f"Average ROUGE-1: {avg_rouge1:.4f}")
-    print(f"Average ROUGE-2: {avg_rouge2:.4f}")
-    print(f"Average ROUGE-L: {avg_rougeL:.4f}")
+    avg_precision_rouge1 = sum([result['precision']['rouge1'] for result in results.values()]) / len(results)
+    avg_precision_rouge2 = sum([result['precision']['rouge2'] for result in results.values()]) / len(results)
+    avg_precision_rougeL = sum([result['precision']['rougeL'] for result in results.values()]) / len(results)
 
-# Main code to load data, evaluate, and print results
-if __name__ == "__main__":
-    # Paths to your data
-    gold_dir = "summaries-gold"  # Update with the correct path to the gold summaries
-    summary_file = "summaries.json"      # Update with the generated summaries (TF-IDF)
+    avg_f1_rouge1 = sum([result['f1']['rouge1'] for result in results.values()]) / len(results)
+    avg_f1_rouge2 = sum([result['f1']['rouge2'] for result in results.values()]) / len(results)
+    avg_f1_rougeL = sum([result['f1']['rougeL'] for result in results.values()]) / len(results)
+
+    print("Average ROUGE-1 Recall: {:.4f}".format(avg_rouge1))
+    print("Average ROUGE-2 Recall: {:.4f}".format(avg_rouge2))
+    print("Average ROUGE-L Recall: {:.4f}".format(avg_rougeL))
     
-    # Load gold summaries and generated summaries
+    print("Average ROUGE-1 Precision: {:.4f}".format(avg_precision_rouge1))
+    print("Average ROUGE-2 Precision: {:.4f}".format(avg_precision_rouge2))
+    print("Average ROUGE-L Precision: {:.4f}".format(avg_precision_rougeL))
+
+    print("Average ROUGE-1 F1: {:.4f}".format(avg_f1_rouge1))
+    print("Average ROUGE-2 F1: {:.4f}".format(avg_f1_rouge2))
+    print("Average ROUGE-L F1: {:.4f}".format(avg_f1_rougeL))
+
+if __name__ == "__main__":
+    gold_dir = "summaries-gold"  
+    summary_file = "summaries.json"   
+    
     gold_summaries = load_gold_summaries(gold_dir)
     generated_summaries = load_generated_summaries(summary_file)
 
