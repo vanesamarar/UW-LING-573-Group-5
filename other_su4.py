@@ -1,6 +1,8 @@
 import os
 import json
 from rouge_metric import PyRouge
+import re
+from nltk.stem import PorterStemmer
 
 def load_gold_summaries(gold_dir):
     """Loads the gold summaries from the 'summaries-gold' directory."""
@@ -20,6 +22,16 @@ def load_generated_summaries(summary_file):
     with open(summary_file, 'r', encoding='utf-8') as f:
         return json.load(f)
 
+stemmer = PorterStemmer()
+
+def preprocess(text):
+    """Preprocessing: lowercase, remove punctuation, stem words."""
+    text = text.lower()
+    text = re.sub(r"[^\w\s]", "", text)  # Remove punctuation
+    tokens = text.split()
+    stemmed = [stemmer.stem(t) for t in tokens]
+    return " ".join(stemmed)
+
 def evaluate_with_rouge_metric(gold_summaries, generated_summaries):
     """Evaluate using rouge-metric including SU4."""
     hypotheses = []
@@ -29,9 +41,12 @@ def evaluate_with_rouge_metric(gold_summaries, generated_summaries):
         gold_summary = gold_summaries.get(topic, [])
         if not gold_summary:
             continue
-        
-        hypotheses.append(' '.join(generated_summary))
-        references.append(gold_summary)
+
+        hyp = preprocess(' '.join(generated_summary))
+        refs = [preprocess(ref) for ref in gold_summary]
+
+        hypotheses.append(hyp)
+        references.append(refs)
 
     rouge = PyRouge(
         rouge_n=(1, 2, 4),

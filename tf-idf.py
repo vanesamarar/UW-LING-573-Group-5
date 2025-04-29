@@ -79,4 +79,4 @@ def summarize_topic(n):
 
 if __name__ == "__main__":
     nltk.download('punkt')
-    summarize_topic(1) #choose top 3 sentences (can be changed)
+    summarize_topic(2) #choose top 3 sentences (can be changed)
