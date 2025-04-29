@@ -22,10 +22,12 @@ def load_generated_summaries(summary_file):
 
 def evaluate_rouge_su4(gold_summaries, generated_summaries):
     """Evaluates ROUGE-SU4 using the Pythonrouge package."""
+
     #summary_file_exists -> python variables or file paths, n_gram -> ROUGE-n, stemming -> strip word to its root
     #word_level -> not character/sentence level, length_limit -> limits summary length, use_cf -> confidence intervals
     #scoring_formula -> average over summaries, resampling -> bootstrapping/random sampling, favor -> NOT SURE
     #p -> weights distribution for precision and recall 
+
     rouge = Pythonrouge(summary_file_exist=False,
                         summary=generated_summaries,
                         reference=gold_summaries,
@@ -38,6 +40,7 @@ def evaluate_rouge_su4(gold_summaries, generated_summaries):
     score = rouge.calc_score()
 
     #this SU4 is skipgram only, so I am attempting to add unigrams back in with ROUGE-1
+
     composite_su4 = 0.5 * score['ROUGE-1-F'] + 0.5 * score['ROUGE-SU4-F']
     print(f"COMPOSITE-SU4-F: {composite_su4:.4f}")
 
@@ -59,3 +62,4 @@ if __name__ == "__main__":
     results = evaluate_rouge_su4(gold_summaries, generated_summaries)
     
     print_rouge_results(results)
+
