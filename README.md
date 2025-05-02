@@ -42,6 +42,7 @@ git clone https://github.com/kavgan/opinosis-summarization.git
 ```bash
 cp -r OpinosisDataset1.0_0/topics ./data/
 cp -r OpinosisDataset1.0_0/summaries-gold ./summaries-gold/
+```
 
 ## Usage
 To generate summaries using the TF-IDF summarizer:
