@@ -16,9 +16,9 @@ git clone https://github.com/kavgan/opinosis-summarization.git
 2. Unzip OpinosisDataset1.0_0.zip
 
 3. After unzipping, move the `topics` and `summaries-gold` directories into your `data/` and `summaries-gold`  directories:
-   ```bash
-   cp -r OpinosisDataset1.0_0/topics ./data/
-   cp -r OpinosisDataset1.0_0/summaries-gold ./data/
+```bash
+cp -r OpinosisDataset1.0_0/topics ./data/
+cp -r OpinosisDataset1.0_0/summaries-gold ./data/
 ```
 
 ## Instructions for Setup
@@ -62,9 +62,25 @@ python rouge_eval.py
 [TF-IDF Reference Code](https://github.com/wangyuhsin/tfidf-text-summarization/blob/main/README.md)
 
 ## Contributers
-Chelsea Kendrick, Nina Koh, Danielle Langford, Vanesa Marar, Haoran Zhao
-University of Washington
-{chelsk5, nbkoh, danilang, vanmarar, hjzhao}@uw.edu
+- **Chelsea Kendrick**  
+  University of Washington  
+  chelsk5@uw.edu
+
+- **Nina Koh**  
+  University of Washington  
+  nbkoh@uw.edu
+
+- **Danielle Langford**  
+  University of Washington  
+  danilang@uw.edu
+
+- **Vanesa Marar**  
+  University of Washington  
+  vanmarar@uw.edu
+
+- **Haoran Zhao**  
+  University of Washington  
+  hjzhao@uw.edu
 
 ## License
 This project is for educational purposes only and is part of coursework for UW LING 573. Please refer to the dataset sources for their specific licenses.
