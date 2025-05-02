@@ -3,24 +3,6 @@
 ## Overview
 This repository contains a baseline text-summarization system for review data using a Term Frequency-Inverse Document Frequency (TF-IDF) approach. 
 
-## Dataset Usage
-
-This project uses the [Opinosis Dataset](https://github.com/kavgan/opinosis-summarization), which is provided for **research purposes only**. Due to licensing restrictions, we **do not include the raw data or gold summaries in this repository**.
-
-### How to Obtain the Dataset
-1. Clone the dataset repository:
-```bash
-git clone https://github.com/kavgan/opinosis-summarization.git
-```
-
-2. Unzip OpinosisDataset1.0_0.zip
-
-3. After unzipping, move the `topics` and `summaries-gold` directories into your `data/` and `summaries-gold`  directories:
-```bash
-cp -r OpinosisDataset1.0_0/topics ./data/
-cp -r OpinosisDataset1.0_0/summaries-gold ./data/
-```
-
 ## Instructions for Setup
 1. Clone the repository
 ```bash
@@ -44,6 +26,22 @@ $ pip install -r requirements.txt
 $ pip install <package-name>
 $ pip freeze > requirements.txt
 ```
+## Dataset Usage
+
+This project uses the [Opinosis Dataset](https://github.com/kavgan/opinosis-summarization), which is provided for **research purposes only**. Due to licensing restrictions, we **do not include the raw data or gold summaries in this repository**.
+
+### How to Obtain the Dataset
+1. Clone the dataset repository:
+```bash
+git clone https://github.com/kavgan/opinosis-summarization.git
+```
+
+2. Unzip `OpinosisDataset1.0_0.zip`
+
+3. After unzipping, move the `topics` and `summaries-gold` directories into your `data/` and `summaries-gold`  directories:
+```bash
+cp -r OpinosisDataset1.0_0/topics ./data/
+cp -r OpinosisDataset1.0_0/summaries-gold ./summaries-gold/
 
 ## Usage
 To generate summaries using the TF-IDF summarizer:
