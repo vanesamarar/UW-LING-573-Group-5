@@ -3,3 +3,9 @@
 
 # MacOS system files
 .DS_Store
+
+# Opinosis topics directory
+/data/
+
+# Opinosis gold standard directory
+/summaries-gold
