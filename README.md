@@ -40,8 +40,8 @@ git clone https://github.com/kavgan/opinosis-summarization.git
 
 3. After unzipping, copy the `topics` and `summaries-gold` directories to your `data` and `summaries-gold`  directories:
 ```bash
-cp -r OpinosisDataset1.0_0/topics ./data
-cp -r OpinosisDataset1.0_0/summaries-gold ./summaries-gold
+cp -r opinosis-summarization/OpinosisDataset1.0_0/topics UW-LING-573-Group-5/data
+cp -r opinosis-summarization/OpinosisDataset1.0_0/summaries-gold UW-LING-573-Group-5/summaries-gold
 ```
 
 ## Usage
