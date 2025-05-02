@@ -1,3 +1,6 @@
+# Authors: Vanesa Marar, Chelsea Kendrick
+# Evaluates generated summaries against gold standard using ROUGE-1, ROUGE-2, and ROUGE-SU4
+
 import os
 import json
 from rouge_metric import PyRouge
