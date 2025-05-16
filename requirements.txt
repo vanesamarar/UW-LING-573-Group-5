@@ -45,7 +45,7 @@ six==1.17.0
 sympy==1.14.0
 textstat==0.7.5
 threadpoolctl==3.6.0
-tokenizers==0.21.1
+tokenizers==0.18.1
 torch==2.7.0
 tqdm==4.67.1
 transformers==4.35.2
