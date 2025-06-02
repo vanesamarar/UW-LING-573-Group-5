@@ -1,0 +1,16 @@
+{
+  "eval_loss": 3.1723947525024414,
+  "eval_rouge1_precision": 0.2557,
+  "eval_rouge1_recall": 0.2699,
+  "eval_rouge1_f1": 0.2495,
+  "eval_rouge2_precision": 0.0794,
+  "eval_rouge2_recall": 0.0731,
+  "eval_rouge2_f1": 0.074,
+  "eval_rougeL_precision": 0.212,
+  "eval_rougeL_recall": 0.2092,
+  "eval_rougeL_f1": 0.2,
+  "eval_runtime": 17.5568,
+  "eval_samples_per_second": 0.627,
+  "eval_steps_per_second": 0.114,
+  "epoch": 3.0
+}
