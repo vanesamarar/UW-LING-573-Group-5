@@ -71,19 +71,35 @@ ROUGE-1 F1 Score:   #score
 ```
 
 ## T5-Small Usage
-### To generate summaries using the T5 model:
-Run all cells in the notebook `LING573_Model.ipynb` located in the repo root or [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/chelsk5/UW-LING-573-Group-5/blob/main/LING573_Model.ipynb). This notebook:
+### To generate fine-tuned summaries using the T5-Small model:
+Run all cells in the notebook `LING573_Train_T5.ipynb` located in the repo root or [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/119ziVUd6aJ08pChLnq6J8C9pMFuMoc6V?usp=sharing#scrollTo=53N0paoCC2gb). This notebook:
 1. Loads and preprocesses the Opinosis dataset
 2. Fine-tunes the T5 model on the training data
 3. Generates summaries on the test set
 4. Computes ROUGE metrics
 5. Saves predictions and references
 
+> **Note:** To obtain HuggingFace scores, run cells 60. and 6A. To obtain PyRouge scores, run cell 6B. 
+
 ### Expected output after running:
 Directory t5-small-results/ will be created containing:
-  - `metrics.json` — JSON file with ROUGE scores (precision, recall, and F1 measures averaged over the test set) and other evaluation metrics
-  - `system_summaries/` — generated summaries from the model, saved as text files (0.txt, 1.txt, ...)
-  - `model_summaries/` — corresponding gold reference summaries, saved as text files (0.A.1.txt, 1.A.1.txt, ...)
+  - `t5_trained_metrics.json` — JSON file with ROUGE 1, 2, L, and SU4 scores across recall, precision, and F1 (in addition to other metrics such as evaluation samples and steps per second) 
+  - `t5_trained_summaries.json` — JSON file with a list of generated fine-tuned summaries from the model
+
+### To generate zero-shot summaries using the T5-Small model:
+Run all cells in the notebook `LING573_Zero_Shot_T5.ipynb` located in the repo root or [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1kUQ3LLgklbHZZBJp0B7GdWp0JvyTiUHJ?usp=sharing). This notebook:
+1. Loads and preprocesses the Opinosis dataset
+2. Fine-tunes the T5 model on the training data
+3. Generates summaries on the test set
+4. Computes ROUGE metrics
+5. Saves predictions and references
+
+> **Note:** To obtain HuggingFace scores, run cells 60. and 6A. To obtain PyRouge scores, run cell 6B. 
+
+### Expected output after running:
+Directory t5-small-results/ will be created containing:
+  - `t5_zero_shot_metrics.json` – JSON file with ROUGE 1, 2, L, and SU4 scores across recall, precision, and F1
+  - `t5_zero_shot_summaries.json` — JSON file with a list of generated zero-shot summaries from the model
 
 ## Hyperparameter Tuning Visualization
 ### To visualize how different hyperparameter configurations affect model performance:
