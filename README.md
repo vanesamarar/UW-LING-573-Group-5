@@ -151,7 +151,7 @@ $ python hyperparameter_plot.py
 University of Washington  
 paullada@uw.edu
 
-## Contributers
+## Contributors
 - **Chelsea Kendrick**  
   University of Washington  
   chelsk5@uw.edu
