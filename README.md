@@ -92,7 +92,7 @@ Directory t5-small-results/ will be created containing:
 $ pip install -r requirements.txt
 ```
 
-2. Optional: Create an Excel sheet with the following columns and save it as a CSV file: 
+2. Optional: Create an Excel sheet with the following columns, populate it with values, and save it as a CSV file titled 'hyperparameter_tuning.csv': 
 ```bash
 $ [Learning Rate,Training Batch Size,Epoch,Rouge1 Precision,Rouge1 Recall,Rouge1 F1,Rouge2 Precision,Rouge2 Recall,Rouge2 F1,Rougel Precision,Rougel Recall,Rougel F1]
 ```
