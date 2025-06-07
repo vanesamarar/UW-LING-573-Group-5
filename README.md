@@ -70,7 +70,7 @@ ROUGE-1 Precision:  #score
 ROUGE-1 F1 Score:   #score
 ```
 
-## T5-small Usage
+## T5-Small Usage
 ### To generate summaries using the T5 model:
 Run all cells in the notebook `LING573_Model.ipynb` located in the repo root or [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/chelsk5/UW-LING-573-Group-5/blob/main/LING573_Model.ipynb). This notebook:
 1. Loads and preprocesses the Opinosis dataset
@@ -84,6 +84,24 @@ Directory t5-small-results/ will be created containing:
   - `metrics.json` — JSON file with ROUGE scores (precision, recall, and F1 measures averaged over the test set) and other evaluation metrics
   - `system_summaries/` — generated summaries from the model, saved as text files (0.txt, 1.txt, ...)
   - `model_summaries/` — corresponding gold reference summaries, saved as text files (0.A.1.txt, 1.A.1.txt, ...)
+
+## Hyperparameter Tuning Visualization
+### To visualize how different hyperparameter configurations affect model performance:
+1. Set up the virtual environment
+```bash
+$ pip install -r requirements.txt
+```
+
+2. Optional: Create an Excel sheet with the following columns and save it as a CSV file: 
+```bash
+$ [Learning Rate,Training Batch Size,Epoch,Rouge1 Precision,Rouge1 Recall,Rouge1 F1,Rouge2 Precision,Rouge2 Recall,Rouge2 F1,Rougel Precision,Rougel Recall,Rougel F1]
+```
+> **Note:** A sample file located at /t5-small_results/hyperparameter_tuning.csv is used by the script by default. This file contains results from our tuning experiments and was used to select the optimal hyperparameter combination.
+
+3. Run the plot script to generate a visualization
+```bash
+$ python hyperparameter_plot.py
+```
 
 ## Acknowledgements
 [Opinosis Dataset](https://github.com/kavgan/opinosis-summarization/blob/master/README.md)
