@@ -100,7 +100,7 @@ Directory t5-small-results/ will be created containing:
 To improve clarity, we have manually renamed the output files in our GitHub repository:
   - `t5_trained_metrics.json` — JSON file with ROUGE 1, 2, L, and SU4 scores across recall, precision, and F1 (in addition to other metrics such as evaluation samples and steps per second) 
   - `t5_trained_summaries.json` — JSON file with a list of generated fine-tuned summaries from the model
-  - `t5_train_hugging_face` — JSON file with ROUGE 1, 2, and L scores across recall, precision, and F1 (in addition to other metrics such as evaluation samples and steps per second) 
+  - `t5_train_hugging_face.json` — JSON file with ROUGE 1, 2, and L scores across recall, precision, and F1 (in addition to other metrics such as evaluation samples and steps per second) 
   
   > **Reminder:** These renamed files are for clarity and documentation purposes. If you re-run the scripts, the original filenames (metrics.json, t5_summaries.json) will be produced unless you explicitly modify the code or rename the outputs manually.
 
@@ -119,6 +119,8 @@ Directory t5-small-results/ will be created containing:
   - `t5_zero_shot_metrics.json` – JSON file with ROUGE 1, 2, L, and SU4 scores across recall, precision, and F1
   - `t5_zero_shot_summaries.json` — JSON file with a list of generated zero-shot summaries from the model
   - `t5_zero_shot_hugging_face_metrics.json` — JSON file with ROUGE 1, 2, L, and SU4 scores across recall, precision, and F1
+
+    > **Reminder:** These renamed files are for clarity and documentation purposes. If you re-run the scripts, the original filenames (metrics.json, t5_summaries.json) will be produced unless you explicitly modify the code or rename the outputs manually.
 
 ## Hyperparameter Tuning Visualization
 ### To visualize how different hyperparameter configurations affect model performance:
