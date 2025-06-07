@@ -74,12 +74,12 @@ ROUGE-1 F1 Score:   #score
 ### To generate fine-tuned summaries using the T5-Small model:
 Run all cells in the notebook `LING573_Train_T5.ipynb` located in the repo root or [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/119ziVUd6aJ08pChLnq6J8C9pMFuMoc6V?usp=sharing#scrollTo=53N0paoCC2gb). This notebook:
 1. Loads and preprocesses the Opinosis dataset
-2. Fine-tunes the T5 model on the training data
+2. Fine-tunes the T5-Small model on the training data
 3. Generates summaries on the test set
-4. Computes ROUGE metrics
-5. Saves predictions and references
+4. Computes ROUGE metrics (refer to note below)
+5. Saves predictions and references to their respective files
 
-> **Note:** To obtain HuggingFace scores, run cells 60. and 6A. To obtain PyRouge scores, run cell 6B. 
+> **Note:** To obtain HuggingFace scores, run cells 60. and 6A. To obtain PyRouge scores, run cell 6B prior to running cell 7. 
 
 ### Expected output after running:
 Directory t5-small-results/ will be created containing:
@@ -89,12 +89,12 @@ Directory t5-small-results/ will be created containing:
 ### To generate zero-shot summaries using the T5-Small model:
 Run all cells in the notebook `LING573_Zero_Shot_T5.ipynb` located in the repo root or [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1kUQ3LLgklbHZZBJp0B7GdWp0JvyTiUHJ?usp=sharing). This notebook:
 1. Loads and preprocesses the Opinosis dataset
-2. Fine-tunes the T5 model on the training data
-3. Generates summaries on the test set
-4. Computes ROUGE metrics
-5. Saves predictions and references
+2. Uses pretrained T5-Small model 
+3. Generates summaries on the entire dataset
+4. Computes ROUGE metrics (refer to note below)
+5. Saves predictions and references to their respective files
 
-> **Note:** To obtain HuggingFace scores, run cells 60. and 6A. To obtain PyRouge scores, run cell 6B. 
+> **Note:** To obtain HuggingFace scores, run cells 6 and 6A. To obtain PyRouge scores, run cell 6B. 
 
 ### Expected output after running:
 Directory t5-small-results/ will be created containing:
