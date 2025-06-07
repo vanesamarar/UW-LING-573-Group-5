@@ -1,0 +1,14 @@
+{
+    "rouge1_precision": 0.8719,
+    "rouge1_recall": 0.6833,
+    "rouge1_f1": 0.7661,
+    "rouge2_precision": 0.5638,
+    "rouge2_recall": 0.4379,
+    "rouge2_f1": 0.493,
+    "rougeL_precision": 0.871,
+    "rougeL_recall": 0.6825,
+    "rougeL_f1": 0.7653,
+    "rougeSU4_precision": 0.7263,
+    "rougeSU4_recall": 0.563,
+    "rougeSU4_f1": 0.6343
+}
