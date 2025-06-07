@@ -82,7 +82,7 @@ ROUGE-1 F1 Score:   #score
 ```
 
 ## T5-Small Usage
-### To generate fine-tuned summaries using the T5-Small model:
+### To generate summaries using the fine-tuned T5-Small model:
 Run all cells in the notebook `LING573_Train_T5.ipynb` located in the repo root or [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/119ziVUd6aJ08pChLnq6J8C9pMFuMoc6V?usp=sharing#scrollTo=53N0paoCC2gb). This notebook:
 1. Loads and preprocesses the Opinosis dataset
 2. Fine-tunes the T5-Small model on the training data
@@ -104,7 +104,7 @@ To improve clarity, we have manually renamed the output files in our GitHub repo
   
   > **Reminder:** These renamed files are for clarity and documentation purposes. If you re-run the scripts, the original filenames (metrics.json, t5_summaries.json) will be produced unless you explicitly modify the code or rename the outputs manually.
 
-### To generate zero-shot summaries using the T5-Small model:
+### To generate summaries using the T5-Small model under zero-shot conditions:
 Run all cells in the notebook `LING573_Zero_Shot_T5.ipynb` located in the repo root or [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1kUQ3LLgklbHZZBJp0B7GdWp0JvyTiUHJ?usp=sharing). This notebook:
 1. Loads and preprocesses the Opinosis dataset
 2. Uses pretrained T5-Small model 
