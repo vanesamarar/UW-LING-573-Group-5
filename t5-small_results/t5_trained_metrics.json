@@ -1,0 +1,19 @@
+{
+  "eval_loss": 3.709578275680542,
+  "eval_rouge1_precision": 0.7672,
+  "eval_rouge1_recall": 0.7561,
+  "eval_rouge1_f1": 0.7616,
+  "eval_rouge2_precision": 0.4564,
+  "eval_rouge2_recall": 0.4423,
+  "eval_rouge2_f1": 0.4492,
+  "eval_rougeL_precision": 0.763,
+  "eval_rougeL_recall": 0.7518,
+  "eval_rougeL_f1": 0.7574,
+  "eval_rougeSU4_precision": 0.609,
+  "eval_rougeSU4_recall": 0.5962,
+  "eval_rougeSU4_f1": 0.6025,
+  "eval_runtime": 35.321,
+  "eval_samples_per_second": 0.311,
+  "eval_steps_per_second": 0.057,
+  "epoch": 5.0
+}
