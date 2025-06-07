@@ -49,7 +49,7 @@ $ cp -r opinosis-summarization/OpinosisDataset1.0_0/summaries-gold UW-LING-573-G
 ```bash
 $ python tf-idf.py
 ```
-Expected output: Saves output to a file named `summaries.json` with the structure:
+Expected output: Saves output to a file in `tf-idf_results/tfidf_summaries.json` with the structure:
 ```
 {
   "topic_name": [
@@ -59,9 +59,20 @@ Expected output: Saves output to a file named `summaries.json` with the structur
 }
 ```
 
-### To evaluate the generated summaries with ROUGE:
+### To evaluate the generated summaries with PyRouge:
 ```bash
 $ python rouge_eval.py
+```
+Expected output: ROUGE Recall, Precision, and F1 scores are printed to the console for each metric:
+```
+ROUGE-1 Recall:     #score
+ROUGE-1 Precision:  #score
+ROUGE-1 F1 Score:   #score
+```
+
+### To evaluate the generated summaries with HuggingFace:
+```bash
+$ python rouge.py
 ```
 Expected output: ROUGE Recall, Precision, and F1 scores are printed to the console for each metric:
 ```
