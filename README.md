@@ -94,8 +94,15 @@ Run all cells in the notebook `LING573_Train_T5.ipynb` located in the repo root 
 
 ### Expected output after running:
 Directory t5-small-results/ will be created containing:
+- `t5_summaries.json` – JSON file with the generated summaries from the fine-tuned T5-small model
+- `metrics.json` – JSON file with evaluation metrics including ROUGE scores (recall, precision, F1) and system-level details like steps per second and evaluation samples
+
+To improve clarity, we have manually renamed the output files in our GitHub repository:
   - `t5_trained_metrics.json` — JSON file with ROUGE 1, 2, L, and SU4 scores across recall, precision, and F1 (in addition to other metrics such as evaluation samples and steps per second) 
   - `t5_trained_summaries.json` — JSON file with a list of generated fine-tuned summaries from the model
+  - `t5_train_hugging_face_
+  
+  > **Reminder:** These renamed files are for clarity and documentation purposes. If you re-run the scripts, the original filenames (metrics.json, t5_summaries.json) will be produced unless you explicitly modify the code or rename the outputs manually.
 
 ### To generate zero-shot summaries using the T5-Small model:
 Run all cells in the notebook `LING573_Zero_Shot_T5.ipynb` located in the repo root or [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1kUQ3LLgklbHZZBJp0B7GdWp0JvyTiUHJ?usp=sharing). This notebook:
