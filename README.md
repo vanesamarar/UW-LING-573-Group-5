@@ -112,7 +112,7 @@ Run all cells in the notebook `LING573_Zero_Shot_T5.ipynb` located in the repo r
 4. Computes ROUGE metrics (refer to note below)
 5. Saves predictions and references to their respective files
 
-> **Note:** To obtain HuggingFace scores, run cells 6 and 6A. To obtain PyRouge scores, run cell 6B. 
+> **Note:** To obtain HuggingFace scores, run cell 6A. To obtain PyRouge scores, run cell 6B. 
 
 ### Expected output after running:
 Directory t5-small-results/ will be created containing:
