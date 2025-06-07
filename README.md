@@ -137,6 +137,10 @@ $ python hyperparameter_plot.py
 
 [T5-small Model Card](https://huggingface.co/google-t5/t5-small)
 
+- **Amandalynne Paullada (LING 573 Instructor)**  
+  University of Washington  
+  paullada@uw.edu
+
 ## Contributers
 - **Chelsea Kendrick**  
   University of Washington  
