@@ -28,7 +28,8 @@ def load_data(data_dir):
 def clean_line(line):
     """Clean the given line by removing capitalization, punctuation, & multiple whitespaces"""
     line = line.lower() # convert to lowercase
-    line = re.sub(r'[^\w\s]', '', line) # remove punctuation
+    # Preserve punctuation for fluent summaries
+    # line = re.sub(r'[^\w\s]', '', line) # remove punctuation
     line = re.sub(r'\s+', ' ', line) # collapse multiple mid-sent whitespaces into one
     return line
 
@@ -46,7 +47,7 @@ def stem_words(tokens):
 
 def summarize_topic(n):
     """Summarizes the top n sentences for each topic using TF-IDF scoring"""
-    data = load_data("data/")
+    data = load_data("topics/")
     summaries = {}
 
     for topic, sentences in data.items():
@@ -74,9 +75,9 @@ def summarize_topic(n):
 
         summaries[topic] = summary_sentences  # Use dictionary format
 
-    with open("summaries.json", "w", encoding="utf-8") as f:
+    with open("tfidf_summaries.json", "w", encoding="utf-8") as f:
         json.dump(summaries, f, indent=2, ensure_ascii=False)
 
 if __name__ == "__main__":
     nltk.download('punkt')
-    summarize_topic(2) #choose top 3 sentences (can be changed)
+    summarize_topic(2) #choose top n sentences (can be changed)

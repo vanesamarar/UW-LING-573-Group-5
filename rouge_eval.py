@@ -104,11 +104,15 @@ def print_rouge_scores(scores):
 
 if __name__ == "__main__":
     gold_dir = "summaries-gold"  
+    summary_file = "lexrank_summaries.json"   
     # summary_file = "tf-idf_results/tfidf_summaries.json"   
-    summary_file = "t5-small_results/t5_zero_shot_summaries.json" 
+    # summary_file = "t5-small_results/t5_zero_shot_summaries.json" 
     
     gold_summaries = load_gold_summaries(gold_dir)
     generated_summaries = load_generated_summaries(summary_file)
 
     scores = evaluate_with_rouge_metric(gold_summaries, generated_summaries)
     print_rouge_scores(scores)
+    metrics_file = f"{summary_file[:-5]}_metrics.json"
+    with open(metrics_file, 'w', encoding='utf-8') as f:
+        json.dump(scores, f, ensure_ascii=False, indent=4)
