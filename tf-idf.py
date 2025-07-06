@@ -75,9 +75,9 @@ def summarize_topic(n):
 
         summaries[topic] = summary_sentences  # Use dictionary format
 
-    with open("tfidf_summaries.json", "w", encoding="utf-8") as f:
+    with open("tfidf_ante-hoc.json", "w", encoding="utf-8") as f:
         json.dump(summaries, f, indent=2, ensure_ascii=False)
 
 if __name__ == "__main__":
     nltk.download('punkt')
-    summarize_topic(2) #choose top n sentences (can be changed)
+    summarize_topic(7) #choose top n sentences (can be changed)
