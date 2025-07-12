@@ -85,8 +85,8 @@ def select_mmr(tokenized_sentences, summary_size=7, lambda_param=0.7):
         selected.append(remaining[max_mmr_index])
         remaining.remove(remaining[max_mmr_index])
         
-        # Return the list of reviews represented by indices in selected
-        return [tokenized_sentences[i] for i in selected]
+    # Return the list of reviews represented by indices in selected
+    return [tokenized_sentences[i] for i in selected]
 
 if __name__ == "__main__":
     data = load_data("topics/")
@@ -97,9 +97,18 @@ if __name__ == "__main__":
         cleaned_sentences = [clean_line(s) for s in sentences]
         tokenized_sentences = [' '.join(stem_words(tokenize_line(s))) for s in cleaned_sentences]
 
-        summary = select_mmr(tokenized_sentences, summary_size=7, lambda_param=0.7)
+        # Run MMR on preprocessed reviews to select a summary
+        # summary = select_mmr(tokenized_sentences, summary_size=7, lambda_param=0.7)
+        summary = select_mmr(tokenized_sentences, summary_size=2, lambda_param=0.7)
+
+        # Map preprocessed review back to original version (avoid aggressive stemming in output)
+        indices = [tokenized_sentences.index(s) for s in summary if s in tokenized_sentences]
+        summary = [sentences[i] for i in indices] 
         summaries[topic] = summary
         
-    with open('mmr_results/mmr_ante-hoc.json', 'w', encoding='utf-8') as f:
+    # with open('mmr_results/mmr_ante-hoc.json', 'w', encoding='utf-8') as f:
+    #     json.dump(summaries, f, indent=2, ensure_ascii=False)
+    
+    with open('mmr_results/mmr_summaries.json', 'w', encoding='utf-8') as f:
         json.dump(summaries, f, indent=2, ensure_ascii=False)
         

@@ -33,7 +33,8 @@ def clean_line(line):
 
 def summarize_reviews(reviews, lexrank):
     """Summarizes reviews using the LexRank algorithm"""
-    return lexrank.get_summary(reviews, summary_size=7, threshold=0.1)
+    # return lexrank.get_summary(reviews, summary_size=7, threshold=0.1)
+    return lexrank.get_summary(reviews, summary_size=2, threshold=0.1)
 
 if __name__ == "__main__":
     data = load_data("topics/")
@@ -51,5 +52,8 @@ if __name__ == "__main__":
         summary = summarize_reviews(reviews, lexrank)
         summaries[topic] = summary
         
-    with open('lexrank_ante-hoc.json', 'w', encoding='utf-8') as f:
+    # with open('lexrank_ante-hoc.json', 'w', encoding='utf-8') as f:
+    #     json.dump(summaries, f, indent=2, ensure_ascii=False)
+    
+    with open('lexrank_summaries.json', 'w', encoding='utf-8') as f:
         json.dump(summaries, f, indent=2, ensure_ascii=False)
