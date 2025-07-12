@@ -106,9 +106,14 @@ if __name__ == "__main__":
     gold_dir = "summaries-gold"  
     # summary_file = "lexrank_results/lexrank_summaries.json"   
     # summary_file = "tf-idf_results/tfidf_summaries.json" 
-    summary_file = "mmr_results/mmr_summaries.json"  
+    # summary_file = "mmr_results/mmr_summaries.json"  
     # summary_file = "t5-small_results/t5_zero_shot_summaries.json" 
     # summary_file = "t5-small_results/t5_trained_summaries_new.json" # with topic mapping
+    
+    # Content selection
+    # summary_file = "tf-idf_results/tfidf_antehoc_summaries.json" 
+    # summary_file = "lexrank_results/lexrank_antehoc_summaries.json" 
+    summary_file = "mmr_results/mmr_antehoc_summaries.json"  
     
     gold_summaries = load_gold_summaries(gold_dir)
     generated_summaries = load_generated_summaries(summary_file)
