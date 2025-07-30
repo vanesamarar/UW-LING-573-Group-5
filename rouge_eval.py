@@ -57,14 +57,35 @@ def evaluate_with_rouge_metric(gold_summaries, generated_summaries):
             continue
         
         # For now, get the first reference summary (may be modified later)
-        gold_summary = gold_list[0]
+        # gold_summary = gold_list[0]
         
-        # Calculate ROUGE scores
-        score = scorer.score(gold_summary, ' '.join(generated_summary))
-        for rouge_type in total_scores.keys():
-            total_scores[rouge_type]['precision'] += score[rouge_type].precision
-            total_scores[rouge_type]['recall'] += score[rouge_type].recall
-            total_scores[rouge_type]['fmeasure'] += score[rouge_type].fmeasure
+        topic_scores = {
+            'rouge1': {'precision': 0, 'recall': 0, 'fmeasure': 0},
+            'rouge2': {'precision': 0, 'recall': 0, 'fmeasure': 0},
+            'rougeL': {'precision': 0, 'recall': 0, 'fmeasure': 0}
+        }
+        
+        # Use all gold summaries available for reference
+        for gold_summary in gold_list:
+            score = scorer.score(gold_summary.strip(), ' '.join(generated_summary))
+            # Iterate through each ROUGE type and accumulate scores
+            for rouge_type in topic_scores.keys():
+                topic_scores[rouge_type]['precision'] += score[rouge_type].precision
+                topic_scores[rouge_type]['recall'] += score[rouge_type].recall
+                topic_scores[rouge_type]['fmeasure'] += score[rouge_type].fmeasure
+        
+        # Normalize scores by the number of gold summaries for this topic
+        gold_num = len(gold_list)
+        for rouge_type in topic_scores.keys():
+            total_scores[rouge_type]['precision'] += (topic_scores[rouge_type]['precision'] / gold_num)
+            total_scores[rouge_type]['recall'] += (topic_scores[rouge_type]['recall'] / gold_num)
+            total_scores[rouge_type]['fmeasure'] += (topic_scores[rouge_type]['fmeasure'] / gold_num)
+        
+        # score = scorer.score(gold_summary, ' '.join(generated_summary))
+        # for rouge_type in total_scores.keys():
+        #     total_scores[rouge_type]['precision'] += score[rouge_type].precision
+        #     total_scores[rouge_type]['recall'] += score[rouge_type].recall
+        #     total_scores[rouge_type]['fmeasure'] += score[rouge_type].fmeasure
         topic_count += 1
         
     # Average the scores   
@@ -104,13 +125,14 @@ def print_rouge_scores(scores):
 
 if __name__ == "__main__":
     gold_dir = "summaries-gold"  
-    # summary_file = "lexrank_results/lexrank_summaries.json"   
+    # One-stage systems
     # summary_file = "tf-idf_results/tfidf_summaries.json" 
+    # summary_file = "lexrank_results/lexrank_summaries.json"   
     # summary_file = "mmr_results/mmr_summaries.json"  
     # summary_file = "t5-small_results/t5_zero_shot_summaries.json" 
     # summary_file = "t5-small_results/t5_trained_summaries_new.json" # with topic mapping
     
-    # Content selection
+    # Two-stage pipelines
     # summary_file = "tf-idf_results/tfidf_antehoc_summaries.json" 
     # summary_file = "lexrank_results/lexrank_antehoc_summaries.json" 
     summary_file = "mmr_results/mmr_antehoc_summaries.json"  
@@ -120,6 +142,6 @@ if __name__ == "__main__":
 
     scores = evaluate_with_rouge_metric(gold_summaries, generated_summaries)
     print_rouge_scores(scores)
-    metrics_file = f"{summary_file[:-5]}_metrics.json"
+    metrics_file = f"{summary_file[:-5]}_rouge_metrics.json"
     with open(metrics_file, 'w', encoding='utf-8') as f:
         json.dump(scores, f, ensure_ascii=False, indent=4)
