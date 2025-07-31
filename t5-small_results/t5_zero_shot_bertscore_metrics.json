@@ -1,5 +1,5 @@
 {
-    "bertscore_precision": 0.8279,
-    "bertscore_recall": 0.8763,
-    "bertscore_f1": 0.8513
+    "bertscore_precision": 0.8347,
+    "bertscore_recall": 0.8898,
+    "bertscore_f1": 0.8612
 }
